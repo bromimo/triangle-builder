@@ -53,22 +53,15 @@ class TriangleBuilder
             return false;
         }
 
-        $sum = 0;
-        $level = 1;
-
-        while (true) {
-            $sum += 2 * $level - 1;
-            if ($sum == $this->n) {
-                $this->levels = $level;
-                $this->cellWidth = strlen((string)$this->n);
-
-                return true;
-            }
-            if ($sum > $this->n) {
-                return false;
-            }
-            $level++;
+        $levels = sqrt($this->n);
+        if ($levels != intval($levels)) {
+            return false;
         }
+
+        $this->levels = $levels;
+        $this->cellWidth = strlen((string)$this->n);
+
+        return true;
     }
 
     /** Определяет максимальную длину строки для выравнивания.
